@@ -1,6 +1,7 @@
 import {Router} from "express"
 import {Todo} from "../types/todos"
 import {v4 as uuidv4} from "uuid"
+import checkAuth from "../middleware/checkAuthenticated"
 
 // can use this to group routes
 const router = Router()
@@ -63,7 +64,9 @@ router.post("", (req, res) => {
 })
 
 // delete --> HTTP METHOD DELETE. used to delete data from a given entitity.
-router.delete("/:uuid", (req, res) => {
+// This will specifically enable the checkAuth middleware before processing the
+// delete /:uuid route for our todos.
+router.delete("/:uuid", checkAuth, (req, res) => {
     const {uuid} = req.params
     const index = todos.findIndex((todo) => todo.uuid === uuid)
     // error out if todo was not found.
