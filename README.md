@@ -1,5 +1,5 @@
 # express rest api ts
-- coding a simple rest api in express using typescript.
+- exploring express by coding a simple CRUD rest api using typescript.
 - enables us to to CRUD operations on todos.
 - based on .js guide here: https://www.youtube.com/watch?v=P5q8rUGCN9k, just
   adapted to .ts
