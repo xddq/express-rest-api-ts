@@ -1,6 +1,8 @@
 # express rest api ts
 - coding a simple rest api in express using typescript.
-- will be aple to CRUD todos.
+- enables us to to CRUD operations on todos.
+- based on .js guide here: https://www.youtube.com/watch?v=P5q8rUGCN9k, just
+  adapted to .ts
 
 # commands to test the api using [httpie](https://github.com/httpie)
 - list todos:
