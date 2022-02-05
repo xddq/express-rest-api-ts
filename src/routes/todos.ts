@@ -28,22 +28,22 @@ router.get("/:uuid", (req, res) => {
 })
 
 // updates a single todo.
-router.put("/:uuid", (req, res) => {
+router.put("/:uuid", checkAuth, (req, res) => {
     const {uuid} = req.params
     const {title, completed} = req.body
 
     // error out if required data was not given.
     if (!title || !completed) {
-        res.send(500)
+        return res.sendStatus(400)
     }
     const index = todos.findIndex((todo) => todo.uuid === uuid)
     // error out if todo was not found.
     if (index === -1) {
-        res.send(500)
+        return res.sendStatus(404)
     }
     const updatedTodo = {title, completed, uuid}
     todos[index] = updatedTodo
-    res.json(updatedTodo)
+    return res.json(updatedTodo)
 })
 
 // post --> HTTP METHOD POST. used to create data for a given entity.
@@ -51,7 +51,7 @@ router.post("", (req, res) => {
     const {title} = req.body
     // error out if empty title.
     if (!title) {
-        res.send(500);
+        return res.sendStatus(400);
     }
     const todo: Todo = {
         uuid: uuidv4(),
@@ -60,7 +60,7 @@ router.post("", (req, res) => {
     }
     todos.push(todo);
     // res.send(200);
-    res.json(todo);
+    return res.json(todo);
 })
 
 // delete --> HTTP METHOD DELETE. used to delete data from a given entitity.
@@ -71,11 +71,11 @@ router.delete("/:uuid", checkAuth, (req, res) => {
     const index = todos.findIndex((todo) => todo.uuid === uuid)
     // error out if todo was not found.
     if (index === -1) {
-        res.send(500)
+        return res.sendStatus(500)
     }
     const deletedTodo = todos[index]
     todos.splice(index, 1)
-    res.json(deletedTodo)
+    return res.json(deletedTodo)
 })
 
 export default router
