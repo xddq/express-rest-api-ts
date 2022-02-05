@@ -5,6 +5,12 @@
   adapted to .ts
 - added dummy custom authentication middleware for the PUT route.
 
+# Quickstart
+- `npm i`
+- `npm run build`
+- `npm run start`
+- *time to query the server!*
+
 # commands to test the api using [httpie](https://github.com/httpie)
 - list todos:
     - `http GET localhost:3001/todos`
